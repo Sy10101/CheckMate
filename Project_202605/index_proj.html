@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="style_proj.css">
+    <script src="script_proj.js" defer></script>
+</head>
+<body>
+    <div class="viewport">
+        <div class="game_container">
+            <!--Page 1-->
+            <div id="welcome">
+                <h1>Checl<: Mate</h1>
+                <p>Welcome to "Checl<:Mate" — an MBTI-based board game where strategy meets friendship.<br><br>Choose your personality icon and set off. At every step, you'll encounter a question — answer from your heart! Your choices will determine the direction you move. Roll the dice and explore your own unique path to friendship on the board.<br><br>Good luck, and may you find the friends who truly match you!</p>
+                <button id="welcome_start">Start!</button>
+                <img src="images/enfj.webp" alt="enfj icon" class="enfj_icon">
+                <img src="images/esfp.webp" alt="esfp icon" class="esfp_icon">
+                <img src="images/esfj.webp" alt="esfj icon" class="esfj_icon">
+                <img src="images/entp.webp" alt="entp icon" class="entp_icon">
+            </div>
+            <!--Page 2-->
+            <div id="choose" class="hidden">
+                <div class="search_box">
+                    <input type="text" id="search_input" placeholder="...or type your MBTI here">
+                    <button id="search_btn">Start</button>
+                </div>
+                <h1>Choose your MBTI! (or MOMO)</h1>
+                <div class="choose_container">
+                    <button class="choose_left">◀ </button>
+                    <div class="choose_char">
+                        <img src="images/infj.webp" alt="infj icon" id="choose_img">
+                    </div>
+                    <button class="choose_right">▶ </button>
+                </div>
+                <div class="selected_info">
+                    <div id="selected_name">ENTP</div>
+                    <div id="selected_intro">Intro entp</div>
+                </div>
+                <button id="choose_confirm">Confirm and start</button>
+            </div>
+            <!--Page 3-->
+            <div id="game" class="hidden">
+                <button id="home_btn">···</button>
+                <div id="home_menu" class="hidden">
+                    <button id="menu_exit">Quit the game</button>
+                    <button id="menu_rechoose">Change your character</button>
+                    <button id="menu_continue">Continue</button>
+                </div>
+                <div class="chess_wrapper">
+                    <div class="chessboard"></div>
+                    <div class="dice_area">
+                        <div id="dice_result">Result: ?</div>
+                        <div id="dice_simple">⚀</div>
+                        <button id="roll_btn" disabled>Roll</button>
+                    </div>
+                    <div class="periphery_top">
+                        <img src="images/isfj.webp" alt="isfj icon">
+                        <img src="images/istj.webp" alt="istj icon">
+                        <img src="images/intp.webp" alt="intp icon">
+                        <img src="images/istp.webp" alt="istp icon">
+                        <img src="images/infp.webp" alt="infp icon">
+                        <img src="images/infj.webp" alt="infj icon">
+                        <img src="images/intj.webp" alt="intj icon">
+                        <img src="images/isfp.webp" alt="isfp icon">
+                    </div>
+                    <div class="periphery_right">
+                        <img src="images/entp.webp" alt="entp icon">
+                        <img src="images/enfp.webp" alt="enfp icon">
+                        <img src="images/enfj.webp" alt="enfj icon">
+                        <img src="images/esfj.webp" alt="esfj icon">
+                        <img src="images/estj.webp" alt="estj icon">
+                        <img src="images/entj.webp" alt="entj icon">
+                        <img src="images/estp.webp" alt="estp icon">
+                        <img src="images/esfp.webp" alt="esfp icon">
+                    </div>
+                    <div class="start_person">
+                        <button id="startGameBtn">Start!</button>
+                        <img src="images/infj.webp" alt="start icon" id="start_pers_img">
+                    </div>
+                    <div id="inboard_person" class="hidden">
+                        <img src="images/infj.webp" alt="inboard icon" id="inboard_pers_img">
+                    </div>
+                </div>
+                <div id="modal" class="hidden">
+                    <div class="modal_content">
+                        <h3 id="modal_question">Question here</h3>
+                        <div id="modal_options"></div>
+                    </div>
+                </div>
+                <div id="ending_modal" class="hidden">
+                    <h3>Congrats!</h3>
+                    <p id="ending_comb"></p>
+                    <button id="ending_confirm">Home</button>
+                </div>
+            </div>
+        <button id="musicToggle">🔇</button>
+        </div>
+    </div>
+    <!-- BGM -->
+    <audio id="bgm" loop preload="auto">
+        <source src="music/Jiggy boogy.mp3" type="audio/mpeg">
+    </audio>
+</body>

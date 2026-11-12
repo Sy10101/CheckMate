@@ -1,0 +1,603 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    font-family: system-ui, 'Trebuchet MS', 'Segoe UI', 'Helvetica Neue', sans-serif;
+}
+
+.viewport {
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game_container {
+    width: 1200px;
+    height: 600px;
+    transform-origin: center center;
+    position: relative;
+}
+
+#welcome {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem; 
+    background-color: #0a0a0a; 
+}
+
+#welcome h1 {
+    font-size: 4rem;
+}
+
+#welcome p {
+    max-width: 80%;
+    margin-bottom: 50px;
+}
+
+#welcome_start {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: none;
+    padding: 14px 40px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 40px;
+    cursor: pointer;
+    color: white;
+}
+
+#welcome_start:hover {
+    transform: scale(1.05);
+}
+
+#welcome_start:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+#welcome.hidden {
+    display: none;
+}
+
+#choose.hidden {
+    display: none;
+}
+
+#choose {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+}
+
+#choose h1 {
+    position: absolute;
+    top: 50px;
+}
+
+.esfp_icon {
+    width: 130px;
+    height: auto;
+    position: absolute;
+    left: 0px;
+    bottom: 16.67%;
+}
+
+.enfj_icon {
+    width: 130px;
+    height: auto;
+    position: absolute;
+    left: 15%;
+    bottom: 3.33%;
+}
+
+.esfj_icon {
+    width: 150px;
+    height: auto;
+    position: absolute;
+    right: 14.5833%;
+    bottom: 1.667%;
+}
+
+.entp_icon {
+    width: 150px;
+    height: auto;
+    position: absolute;
+    right: 0px;
+    bottom: 16.67%;
+}
+
+.choose_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.choose_left, .choose_right {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: white;
+    opacity: 0.9;
+    cursor: pointer; 
+    border: none;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.choose_left:hover, .choose_right:hover {
+    transform: scale(1.1);
+}
+
+.choose_left:active, .choose_right:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+.choose_char {
+    height: 250px;
+    display: inline-block;
+    top: 200px;
+}
+
+.choose_char img {
+    height: 250px;
+}
+
+#selected_name {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#selected_intro {
+    margin-bottom: 20px;
+}
+
+#choose_confirm {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    width: auto;
+    min-width: 200px;
+    padding: 12px 35px;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 5px;
+    bottom: 50px;
+}
+
+#choose_confirm:hover {
+    transform: scale(1.05);
+}
+
+#choose_confirm:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+.search_box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+    background-color: rgba(10, 10, 10, 0.9);
+}
+
+#search_input {
+    background: #1e1e2a;
+    border: 1px solid #47A374;
+    border-radius: 30px;
+    color: white;
+    font-size: 0.9rem;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+}
+
+#search_btn {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 10px;
+}
+
+#search_btn:hover {
+    transform: scale(1.05);
+}
+
+#search_btn:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+#game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#game.hidden {
+    display: none;
+}
+
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    width: 490px;
+    height: 490px;
+    background-color: #0a0a0a;
+    border: 2px solid #4a4a62;
+    margin-top: 50px;
+}
+
+.cell {
+    border: 1px solid #3a3a4e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chess_wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.start_person {
+    width: 80px;
+    height: auto;
+    position: absolute;
+    left: -15%;
+    bottom: -5%;
+}
+
+.start_person.hidden {
+    display: none;
+}
+
+.start_person img {
+    width: 100%;
+    height: 100%;
+}
+
+#inboard_person {
+    width: 50px;
+    height: auto;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#inboard_person img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+#inboard_person.hidden {
+    display: none;
+}
+
+.periphery_top {
+    position: absolute;
+    bottom: 90%;
+    left: 0;
+    display: flex;
+    gap: 2px;
+}
+
+.periphery_right {
+    position: absolute;
+    left: 100%;
+    top: 8%;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.periphery_top img {
+    width: 60px;
+    height: auto;
+}
+
+.periphery_right img {
+    height: 62px;
+    width: auto;
+}
+
+#home_btn {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    cursor: pointer;
+    background: linear-gradient(90deg, #47A374, #85639B);
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+
+#home_btn:hover {
+    transform: scale(1.05);
+}
+
+#home_btn:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+#home_menu {
+    position: fixed;
+    top: 12%;
+    left: 2%;
+    background: #1e1e2a;
+    border-radius: 5px;
+    border: 1px solid #47A374;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    z-index: 2000;
+}
+
+#home_menu button {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    height: 50px;
+    width: auto;
+    font-size: 1rem;
+}
+
+#home_menu button:hover {
+    transform: scale(1.02);
+}
+
+#home_menu:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+#home_menu.hidden {
+    display: none;
+}
+
+#startGameBtn {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    text-align: center;
+    left: -100%;
+    bottom: 30%;
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: none;
+    padding: 10px 10px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#startGameBtn:hover {
+    transform: scale(1.02);
+}
+
+#startGameBtn:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+#modal {
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#modal.hidden {
+    display: none;
+}
+
+.modal_content{
+    background-color: #1e1e2a;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 500px;
+    width: 80%;
+    text-align: center;
+    border: 2px solid #47A374;
+}
+
+#modal_question {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: #b794f4;
+}
+
+#modal_options {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+#modal_options button {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: 1px solid #47A374;
+    padding: 12px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#modal_options button:hover {
+    transform: scale(1.02);
+}
+
+#modal_options button:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+#roll_btn {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: none;
+    padding: 10px 10px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    width: 75px;
+    height: 75px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#roll_btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#roll_btn:hover:not(:disabled) {
+    transform: scale(1.02);
+}
+
+#roll_btn:active:not(:disabled) {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+#dice_result {
+    font-size: 1.3rem;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.dice_area {
+    position: absolute;
+    right: -250px;
+    top: 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    height: 100%;
+    width: 100px;   
+}
+
+#dice_simple {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: white;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+}
+
+#ending_modal {
+    background-color: #1e1e2a;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 500px;
+    width: 80%;
+    text-align: center;
+    border: 2px solid #47A374;
+    position: absolute;
+}
+
+#ending_modal.hidden {
+    display: none;
+}
+
+#ending_modal h3, p {
+    margin-bottom: 30px;
+}
+
+#ending_confirm {
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: 1px solid #47A374;
+    padding: 12px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#musicToggle {
+    position: fixed;
+    top: 10%;
+    left: 13%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #47A374, #85639B);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+#musicToggle:hover {
+    transform: scale(1.05);
+}
+
+#musicToggle:active {
+    background: linear-gradient(90deg, #2f694b, #574266);
+}
+
+
+
